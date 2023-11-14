@@ -1,10 +1,10 @@
-package com.afromito.biblioteca.api;
+package com.danley.tasks;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApplicationTests {
+class TasksApplicationTests {
 
 	@Test
 	void contextLoads() {
