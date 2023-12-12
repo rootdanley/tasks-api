@@ -7,6 +7,9 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data ///O @Data inclui automaticamente os métodos toString(), equals(), hashCode(),  getters e setters
 @Entity // cria a entidade do banco de dados
 @Table(name = User.TABLE_NAME) // identifica o nome da tabela
@@ -42,6 +45,7 @@ public class User {
 	@Size(groups = CreateUser.class, min = 8, max = 60)
 	private String password;
 
-//	private List<Task> tasks = new ArrayList<>();
+	@OneToMany(mappedBy = "user")
+	private List<Task> tasks = new ArrayList<>();
 
 }
