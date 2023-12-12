@@ -10,7 +10,7 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data ///O @Data inclui automaticamente os métodos toString(), equals(), hashCode(),  getters e setters
+@Data // O @Data inclui automaticamente os métodos toString(), equals(), hashCode(),  getters e setters
 @Entity // cria a entidade do banco de dados
 @Table(name = User.TABLE_NAME) // identifica o nome da tabela
 public class User {
