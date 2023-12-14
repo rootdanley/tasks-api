@@ -1,6 +1,7 @@
 package com.danley.tasks.models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -30,6 +31,7 @@ public class Task {
 
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false, updatable = false)
+	@JsonBackReference
 	private User user;
 
 	@Column(name = "description", length = 255, nullable = false)

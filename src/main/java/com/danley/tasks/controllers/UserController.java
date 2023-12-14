@@ -5,6 +5,7 @@ import com.danley.tasks.models.User;
 import com.danley.tasks.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -20,11 +21,31 @@ public class UserController {
   @Autowired
   private UserService userService;
 
+//  @GetMapping("/{id}")
+//  public ResponseEntity<User> findById(@PathVariable Long id) {
+//    User obj = this.userService.findByid(id);
+//    return  ResponseEntity.ok().body(obj);
+//  }
+
   @GetMapping("/{id}")
   public ResponseEntity<User> findById(@PathVariable Long id) {
-    User obj = this.userService.findByid(id);
-    return  ResponseEntity.ok().body(obj);
+    try {
+      User obj = this.userService.findByid(id);
+
+      if (obj != null) {
+        return ResponseEntity.ok().body(obj);
+      } else {
+        return ResponseEntity.notFound().build();
+      }
+    } catch (Exception e) {
+      // Log the exception for debugging purposes
+      e.printStackTrace(); // You might want to use a logger like SLF4J instead
+
+      // Return a meaningful error response to the client
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+    }
   }
+
 
 
   @PostMapping
@@ -52,5 +73,4 @@ public class UserController {
     this.userService.delete(id);
     return ResponseEntity.noContent().build();
   }
-
 }
